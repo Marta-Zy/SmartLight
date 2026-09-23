@@ -2,46 +2,40 @@
 public class Main {
 
     public static void main(String[] args) {
-    // Nivå1
-        int lightId = 1;
-        boolean isLightOn = false;
-        int brightness = 0;
-        String doorZone = "Entré";
-        boolean isOpen = true;
+        // SmrtLight
 
-        if (isOpen) {
-        isLightOn = true;
-        brightness = 80;
-        System.out.println("Door " + doorZone + " are open!");
-        System.out.println("Lamp status (" + isLightOn + ") is ON");
-        }
+        SmartLight lamp1 = new SmartLight();
+        lamp1.deviceID = "Lamp-101";
+        lamp1.brightness = 80;
 
-        if (brightness >= 0 && brightness <= 100) {
+        SmartLight lamp2 = new SmartLight();
+        lamp2.deviceID = "Lamp-102";
+        lamp2.brightness = 100;
 
-        System.out.println("Brightness is valid");
-        } else {
-        System.out.println("Invalid brightness valid!");
-        }
+        SmartLight lamp3 = new SmartLight();
+        lamp3.deviceID = "Lamp-103";
+        lamp3.brightness = 15;
 
-        //Nivå 2
+        lamp1.turnOn();
+        lamp1.turnOff();
 
-        // Dimmerloop
-        for (int b = 0; b <= 100; b += 20) {
-        brightness = b;
-        System.out.println("Brightness: " + brightness + "%");
-        }
+        lamp2.turnOn();
+        lamp2.turnOff();
 
-        // 2. Toggle
-        isLightOn = !isLightOn;
-        System.out.println("Lamp status after toggle: " + isLightOn);
+        lamp3.turnOn();
+        lamp3.turnOff();
 
+        System.out.println("----------------------------------------");
 
-        // 3. Felhantering
-        brightness = 120; //
-        if (brightness >= 0 && brightness <= 100) {
-        System.out.println("Brightness is valid");
-        } else {
-        System.out.println("Error: " + brightness + "% is invalid!");
+        //DoorSensor
+        DoorSensor door = new DoorSensor();
+        door.sensorID = "Door-01";
+
+        door.openDoor();
+
+        if (door.isOpen) {
+            System.out.println("Open door detected! Turning on Light 2...");
+            lamp2.turnOn();
         }
     }
 }
